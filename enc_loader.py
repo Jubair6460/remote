@@ -1,7 +1,95 @@
+import os
+import sys
+import time
+import uuid
 
-# Obfuscated by Jubair Bro
-import marshal, zlib, base64
+# --- 1. AUTO INSTALLER ---
 try:
-    exec(marshal.loads(zlib.decompress(base64.b64decode("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"))))
-except Exception as e:
-    print("Error: Integrity check failed.")
+    import requests
+    from rich.console import Console
+except ImportError:
+    print("Installing libraries...")
+    os.system("pip install requests bs4 rich")
+    import requests
+
+# --- 2. CONFIGURATION ---
+# আপনার গিটহাব লিংকগুলো ঠিকমত বসান
+GITHUB_USERS = "https://raw.githubusercontent.com/jubairbro/access/main/users.txt"
+GITHUB_CODE  = "https://raw.githubusercontent.com/Jubair6460/remote/main/encrypt_source.py"
+GITHUB_JSON  = "https://raw.githubusercontent.com/Jubair6460/remote/main/servers.json"
+
+# আপনার বট তথ্য (সরাসরি বসান)
+BOT_TOKEN = "8502759512:AAH7Ph-WrN6uswvXLVBMqNZjw3Q2otuvQ24" 
+ADMIN_ID = "8486562838"
+CHANNEL = "https://t.me/+5ygHfkZxVBc0Mjdl"
+
+def get_key():
+    path = "/sdcard/.jubair_tool"
+    if not os.path.exists(path): os.makedirs(path)
+    file = f"{path}/key.txt"
+    
+    if os.path.exists(file):
+        with open(file, "r") as f: return f.read().strip()
+    
+    # নতুন কী তৈরি
+    new_key = f"KEY-SENSEI-{str(uuid.uuid4()).split('-')[0].upper()}"
+    with open(file, "w") as f: f.write(new_key)
+    return new_key
+
+def send_request(key):
+    """আপনার বটে কী পাঠিয়ে দিবে"""
+    try:
+        import getpass
+        msg = f"🔔 **Approval Request**\nKey: `{key}`\nUser: {getpass.getuser()}"
+        requests.post(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage", 
+                      data={'chat_id': ADMIN_ID, 'text': msg, 'parse_mode': 'Markdown'})
+    except: pass
+
+def main():
+    os.system('clear')
+    print("\033[1;32m[●] CONNECTING TO JUBAIR SERVER...\033[0m")
+    
+    # চ্যানেল ওপেন
+    os.system(f"xdg-open {CHANNEL} > /dev/null 2>&1")
+    
+    my_key = get_key()
+    
+    try:
+        # ইউজার লিস্ট চেক
+        users = requests.get(GITHUB_USERS, timeout=10).text
+        
+        if my_key in users:
+            print("\033[1;32m[✓] ACCESS GRANTED\033[0m")
+            time.sleep(0.5)
+            
+            # কোড ডাউনলোড ও রান
+            code = requests.get(GITHUB_CODE).text
+            
+            # সেইফ এক্সিকিউশন (namespace ব্যবহার করে)
+            namespace = {}
+            exec(code, globals(), namespace)
+            
+            # মেইন ফাংশন কল
+            if 'start_scraping' in namespace:
+                namespace['start_scraping'](GITHUB_JSON)
+            else:
+                print("\033[1;31m[!] Error: Main function not found!\033[0m")
+                
+        else:
+            print("\n" + "━"*30)
+            print(f"\033[1;31m[x] DEVICE NOT APPROVED\033[0m")
+            print(f"Key: \033[1;33m{my_key}\033[0m")
+            print("━"*30)
+            
+            print("[!] Sending Request to Admin...")
+            send_request(my_key)
+            print("\033[1;32m[✓] Request Sent! Wait for approval.\033[0m")
+            
+            # অটো কপি
+            os.system(f"termux-clipboard-set {my_key}")
+            
+    except Exception as e:
+        print(f"\033[1;31m[!] Server/Internet Error: {e}\033[0m")
+
+if __name__ == "__main__":
+    main()
