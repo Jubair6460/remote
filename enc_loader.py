@@ -19,7 +19,7 @@ GITHUB_CODE  = "https://raw.githubusercontent.com/Jubair6460/remote/main/encrypt
 GITHUB_JSON  = "https://raw.githubusercontent.com/Jubair6460/remote/main/servers.json"
 
 # আপনার বট তথ্য (সরাসরি বসান)
-BOT_TOKEN = "8502759512:AAH7Ph-WrN6uswvXLVBMqNZjw3Q2otuvQ24" 
+BOT_TOKEN = "#" 
 ADMIN_ID = "8486562838"
 CHANNEL = "https://t.me/+5ygHfkZxVBc0Mjdl"
 
