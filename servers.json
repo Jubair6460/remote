@@ -1,14 +1,13 @@
 {
     "servers": [
-        "https://sg1.xspeed.web.id:81/",
-        "https://kominfo.xspeed.web.id:81/",
-        "https://ikd.xspeed.web.id:81/",
-        "https://biznet.xspeed.web.id:81/",
-        "https://udp-hc.xspeed.web.id:81/",
-        "https://warrior.rifganss-store.my.id:81/",
-        "https://newmedia.xspeed.web.id:81/"
+        "https://113.29.232.134:81/",
+        "https://139.59.227.188:81/",
+        "https://141.11.25.98:81/",
+        "https://103.148.195.236:81/",
+        "http://103.197.190.87:81/",
+        "http://202.155.94.6:81/"
     ],
     "message": "Tool is currently under maintenance. Please wait for update.",
-    "status": "off"
-   "active" : "comment"
+    "status": "active"
+   "_active" : "comment"
 }
