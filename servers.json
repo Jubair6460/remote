@@ -9,6 +9,6 @@
         "https://newmedia.xspeed.web.id:81/"
     ],
     "message": "Tool is currently under maintenance. Please wait for update.",
-    "status": " off"
-   <-- #"active"-->
+    "status": "off"
+   "active" : "comment"
 }
