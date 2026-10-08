@@ -3,20 +3,16 @@
   "maintenance_message": "System is under maintenance. Please try again later.",
   "servers": [
     {
-      "name": "ID |  🇲🇨",
-      "url": "dewa.aroma.web.id:81"
-    },
-    {
       "name": "SG | NEWMEDIA 🇸🇬",
       "url": "103.200.219.97:81"
     },
     {
       "name": "SG NEW",
-      "url": "103.200.219.253"
+      "url": "103.200.219.253:81"
     },
     {
       "name": "ID NEW",
-      "url": "178.83.181.27"
+      "url": "178.83.181.27:81"
     }
   ]
 }
